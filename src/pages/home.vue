@@ -77,31 +77,65 @@
           <image src="../static/images/goods/1.jpg" />
           <div class="recommend-good-desc">
             <div class="good-name">可福唯瑷 2018秋冬新款长袖连衣裙女韩</div>
-            <span class="new-price"><em>￥</em>135</span>
-            <span class="old-price"><em>￥</em>195</span>
-            <span class="sale-num">销量345件</span>
+            <div class="good-info">
+              <span class="new-price"><em>￥</em>135</span>
+              <!--<span class="old-price"><em>￥</em>195</span>-->
+              <span class="sale-num">销量345件</span>
+              <i class="icon iconfont icon-gouwuchetianjia"></i>
+            </div>
           </div>
         </div>
         <div class="recommend-goods-item">
-          <image src="../static/images/goods/2.jpg" />
+          <image src="../static/images/goods/1.jpg" />
           <div class="recommend-good-desc">
             <div class="good-name">汐颜 两件套连衣裙秋装2018针织韩版修</div>
-            <span class="new-price"><em>￥</em>235</span>
-            <span class="old-price"><em>￥</em>405</span>
-            <span class="sale-num">销量1345件</span>
+            <div class="good-info">
+              <span class="new-price"><em>￥</em>235</span>
+              <!--<span class="old-price"><em>￥</em>405</span>-->
+              <span class="sale-num">销量1345件</span>
+              <i class="icon iconfont icon-gouwuchetianjia"></i>
+            </div>
           </div>
         </div>
         <div class="recommend-goods-item">
-          <image src="../static/images/goods/3.jpg" />
+          <image src="../static/images/goods/1.jpg" />
           <div class="recommend-good-desc">
             <div class="good-name">菲梦伊中长毛衣打底裙秋冬2018新款V领</div>
-            <span class="new-price"><em>￥</em>499</span>
-            <span class="old-price"><em>￥</em>798</span>
-            <span class="sale-num">销量345件</span>
+            <div class="good-info">
+              <span class="new-price"><em>￥</em>499</span>
+              <!--<span class="old-price"><em>￥</em>798</span>-->
+              <span class="sale-num">销量345件</span>
+              <i class="icon iconfont icon-gouwuchetianjia"></i>
+            </div>
+          </div>
+        </div>
+        <div class="recommend-goods-item">
+          <image src="../static/images/goods/1.jpg" />
+          <div class="recommend-good-desc">
+            <div class="good-name">新款韩版印花字母短款T恤衫</div>
+            <div class="good-info">
+              <span class="new-price"><em>￥</em>199</span>
+              <!--<span class="old-price"><em>￥</em>298</span>-->
+              <span class="sale-num">销量245件</span>
+              <i class="icon iconfont icon-gouwuchetianjia"></i>
+            </div>
+          </div>
+        </div>
+        <div class="recommend-goods-item">
+          <image src="../static/images/goods/1.jpg" />
+          <div class="recommend-good-desc">
+            <div class="good-name">2018女士时尚印花蕾丝长袖打底衫T18C0113</div>
+            <div class="good-info">
+              <span class="new-price"><em>￥</em>399</span>
+              <!--<span class="old-price"><em>￥</em>498</span>-->
+              <span class="sale-num">销量45件</span>
+              <i class="icon iconfont icon-gouwuchetianjia"></i>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="block"></div>
   </div>
 </template>
 
@@ -282,9 +316,16 @@
   }
   .recommend-goods-item image {
     width: 175px;
+    height: 160px;
   }
   .recommend-good-desc {
     padding: 10px;
+  }
+  .good-info {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: 5px;
   }
   .good-name {
     max-width: 155px;
@@ -295,7 +336,7 @@
   .new-price {
     color: #f10215;
     font-weight: 500;
-    margin-right: 8px;
+    font-size: 14px;
   }
   em {
     display: inline-block;
@@ -307,7 +348,13 @@
   }
   .sale-num {
     color: #999;
-    font-size: 10px;
-    margin-left: 10px;
+  }
+  .icon-gouwuchetianjia {
+    color: #f10215;
+    display: inline-block;
+  }
+  .block {
+    height: 20px;
+    background-color: #fff;
   }
 </style>
