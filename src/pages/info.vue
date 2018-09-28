@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-      <div style="margin-top: 10px">
+      <div style="margin-top: 10px; border-top: 1px solid #F0F0F0">
         <div class="menu-item">
           <image class="menu-img" src="../static/images/icon_my_06.png"/>
           <div class="menu-content">
@@ -120,6 +120,9 @@
   .my-header-info .nickname {
     color: hsla(0,0%,100%,.7);
     margin-top: 10px;
+  }
+  .menu-wrap {
+    border-top: 1px solid #F0F0F0;
   }
   .menu-item {
     display: flex;
