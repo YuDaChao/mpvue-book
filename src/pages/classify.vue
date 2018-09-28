@@ -24,13 +24,13 @@
           </div>
         </scroll-view>
         <scroll-view class="right-content" scroll-y scroll-with-animation="true" style="height: 100%">
-          <div class="right-header-wrap" v-if="goodList.length > 0">
+          <div class="right-header-wrap" v-if="categoryGoods.length > 0">
             <image class="header-img" src="https://img30.360buyimg.com/mcoss/jfs/t14326/60/276010902/48321/b37641e8/5a28eb8cNaa81d806.jpg"/>
           </div>
           <div
             class="category-content"
-            v-if="goodList.length > 0"
-            v-for="(good, idx) in goodList"
+            v-if="categoryGoods.length > 0"
+            v-for="(good, idx) in categoryGoods"
             :key="idx">
             <h4 class="category-title">{{ good.tag }}</h4>
             <div class="category-list">
@@ -43,7 +43,7 @@
               </div>
             </div>
           </div>
-          <div v-if="goodList.length === 0 && !isLoading" class="no-data-wrap">
+          <div v-if="categoryGoods.length === 0 && !isLoading" class="no-data-wrap">
             <image src="../static/images/empty.png" />
             <p class="no-data-tip">没有查询到任何数据~</p>
           </div>
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+  import { mapActions, mapState } from 'vuex'
   import api from '../api'
 
   export default {
@@ -62,17 +63,19 @@
         windowHeight: 0,
         scrollTop: 0,
         current: 0,
-        categories: [],
-        goodList: [],
-        isLoading: true
+        categories: []
       }
     },
     mounted () {
       this.getWindowHeight()
       this.getCategoryList()
-      this.getGoodsByCategoryId('1')
+      this.getCategoryGoods('1')
+    },
+    computed: {
+      ...mapState(['categoryGoods', 'isLoading'])
     },
     methods: {
+      ...mapActions(['getCategoryGoods']),
       getWindowHeight () {
         let systemInfo = wx.getSystemInfoSync();
         this.windowHeight = systemInfo.windowHeight
@@ -80,26 +83,13 @@
       onClickItem (index, item) {
         this.current = index
         this.scrollTop = index * 50
-        this.getGoodsByCategoryId(item.category_id)
+        this.getCategoryGoods(item.category_id)
       },
       async getCategoryList () {
         const result = await api.getCategoryList()
         if (result.code === 0) {
           this.categories = result.data
         }
-      },
-      async getGoodsByCategoryId (id) {
-        this.isLoading = true
-        wx.showLoading({
-          title: '加载中',
-          mask: true
-        })
-        const result = await api.getGoodsByCategoryId(id)
-        if (result.code === 0) {
-          this.goodList = result.data
-        }
-        this.isLoading = false
-        wx.hideLoading()
       }
     }
   };
