@@ -73,73 +73,27 @@
     <!--推荐商品列表-->
     <div class="recommend-goods-wrap">
       <div class="recommend-goods-content">
-        <div class="recommend-goods-item">
-          <image src="../static/images/goods/1.jpg" />
+        <div class="recommend-goods-item" v-for="(good, index) in goodList" :key="index">
+          <image :src="good.url" />
           <div class="recommend-good-desc">
-            <div class="good-name">可福唯瑷 2018秋冬新款长袖连衣裙女韩</div>
+            <div class="good-name">{{ good.name }}</div>
             <div class="good-info">
-              <span class="new-price"><em>￥</em>135</span>
+              <span class="new-price"><em>￥</em>{{ good.price }}</span>
               <!--<span class="old-price"><em>￥</em>195</span>-->
-              <span class="sale-num">销量345件</span>
-              <i class="icon iconfont icon-gouwuchetianjia"></i>
-            </div>
-          </div>
-        </div>
-        <div class="recommend-goods-item">
-          <image src="../static/images/goods/1.jpg" />
-          <div class="recommend-good-desc">
-            <div class="good-name">汐颜 两件套连衣裙秋装2018针织韩版修</div>
-            <div class="good-info">
-              <span class="new-price"><em>￥</em>235</span>
-              <!--<span class="old-price"><em>￥</em>405</span>-->
-              <span class="sale-num">销量1345件</span>
-              <i class="icon iconfont icon-gouwuchetianjia"></i>
-            </div>
-          </div>
-        </div>
-        <div class="recommend-goods-item">
-          <image src="../static/images/goods/1.jpg" />
-          <div class="recommend-good-desc">
-            <div class="good-name">菲梦伊中长毛衣打底裙秋冬2018新款V领</div>
-            <div class="good-info">
-              <span class="new-price"><em>￥</em>499</span>
-              <!--<span class="old-price"><em>￥</em>798</span>-->
-              <span class="sale-num">销量345件</span>
-              <i class="icon iconfont icon-gouwuchetianjia"></i>
-            </div>
-          </div>
-        </div>
-        <div class="recommend-goods-item">
-          <image src="../static/images/goods/1.jpg" />
-          <div class="recommend-good-desc">
-            <div class="good-name">新款韩版印花字母短款T恤衫</div>
-            <div class="good-info">
-              <span class="new-price"><em>￥</em>199</span>
-              <!--<span class="old-price"><em>￥</em>298</span>-->
-              <span class="sale-num">销量245件</span>
-              <i class="icon iconfont icon-gouwuchetianjia"></i>
-            </div>
-          </div>
-        </div>
-        <div class="recommend-goods-item">
-          <image src="../static/images/goods/1.jpg" />
-          <div class="recommend-good-desc">
-            <div class="good-name">2018女士时尚印花蕾丝长袖打底衫T18C0113</div>
-            <div class="good-info">
-              <span class="new-price"><em>￥</em>399</span>
-              <!--<span class="old-price"><em>￥</em>498</span>-->
-              <span class="sale-num">销量45件</span>
+              <span class="sale-num">销量{{ good.sale_num }}件</span>
               <i class="icon iconfont icon-gouwuchetianjia"></i>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="block"></div>
+    <div class="load-more-wrap"><load-more :show="showLoadMore" /></div>
   </div>
 </template>
 
 <script>
+  import api from '../api'
+  import LoadMore from '../components/loadMore'
   export default {
     name: "home",
     data () {
@@ -157,11 +111,28 @@
         autoplay: true,
         circular: true,
         nextMargin: "0px",
-        searchBgColor: 'rgba(228, 49, 48, 0)'
+        searchBgColor: 'rgba(228, 49, 48, 0)',
+        goods: [],
+        goodList: [],
+        showLoadMore: true
       };
     },
-    mounted () { },
-    methods: { },
+    components: {
+      LoadMore
+    },
+    mounted () {
+      this.getGoodList()
+    },
+    methods: {
+      async getGoodList () {
+        const result = await api.getGoodList()
+        if (result.code === 0) {
+          this.goods = result.data
+          this.goodList = result.data.slice(0, 5)
+        }
+      }
+    },
+    // 监听页面滚动
     onPageScroll (e) {
       let scrollTop = e.scrollTop
       if (scrollTop < 20) {
@@ -169,6 +140,14 @@
       } else if (scrollTop >= 20 && scrollTop <= 150) {
         this.searchBgColor = 'rgba(228, 49, 48, ' + scrollTop / 150 + ')'
       }
+    },
+    // 下拉加载
+    onReachBottom () {
+      this.showLoadMore = true
+      setTimeout(() => {
+        this.goodList = [...this.goodList, ...this.goods.slice(5, 10)]
+        this.showLoadMore = true
+      }, 1500)
     }
   };
 </script>
@@ -316,7 +295,7 @@
   }
   .recommend-goods-item image {
     width: 175px;
-    height: 160px;
+    /*height: 160px;*/
   }
   .recommend-good-desc {
     padding: 10px;
@@ -353,8 +332,7 @@
     color: #f10215;
     display: inline-block;
   }
-  .block {
-    height: 20px;
-    background-color: #fff;
+  .load-more-wrap {
+    margin-bottom: 5px;
   }
 </style>

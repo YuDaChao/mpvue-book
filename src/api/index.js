@@ -13,7 +13,14 @@ const getCategoryList = () => fly.get(`/categories`)
  */
 const getGoodsByCategoryId = (categoryId) => fly.get(`/category?id=${categoryId}`)
 
+/**
+ * 商品列表
+ * @returns {FlyPromise<any>}
+ */
+const getGoodList = () => fly.get('/goods')
+
 export default {
   getCategoryList,
-  getGoodsByCategoryId
+  getGoodsByCategoryId,
+  getGoodList
 }
