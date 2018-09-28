@@ -3,22 +3,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import state from './state'
+import mutations from './mutations'
+import actions from './actions'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment: (state) => {
-      const obj = state
-      obj.count += 1
-    },
-    decrement: (state) => {
-      const obj = state
-      obj.count -= 1
-    }
-  }
+  state,
+  mutations,
+  actions
 })
 
 export default store
