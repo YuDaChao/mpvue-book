@@ -24,48 +24,48 @@
     </div>
     <!--导航-->
     <div class="nav-list">
-      <div class="nav-item">
+      <navigator class="nav-item">
         <image src="../static/images/icon_nav_01_new.png" class="nav_icon"/>
         <div class="nav-text">签到有礼</div>
-      </div>
-      <div class="nav-item">
+      </navigator>
+      <navigator class="nav-item">
         <image src="../static/images/icon_nav_02_new.png" class="nav_icon"/>
         <div class="nav-text">换货专区</div>
-      </div>
-      <div class="nav-item">
+      </navigator>
+      <navigator class="nav-item">
         <image src="../static/images/icon_nav_03_new.png" class="nav_icon"/>
         <div class="nav-text">特价专区</div>
-      </div>
-      <div class="nav-item">
+      </navigator>
+      <navigator class="nav-item">
         <image src="../static/images/icon_nav_04_new.png" class="nav_icon"/>
         <div class="nav-text">我要补货</div>
-      </div>
+      </navigator>
     </div>
     <div class="activity">
       <div class="title">优惠活动</div>
     </div>
     <!--优惠活动-->
-    <div class="good-item">
+    <navigator class="good-item">
       <image class="img" src="../static/images/banner/201803191442069389248.jpg" />
       <div class="good-desc">
         <div class="brand">品牌: 香奈儿</div>
         <div class="year">年份季节: 2018秋季新款</div>
       </div>
-    </div>
-    <div class="good-item">
+    </navigator>
+    <navigator class="good-item">
       <image class="img" src="../static/images/banner/201803221356007729116.jpg" />
       <div class="good-desc">
         <div class="brand">品牌: 香奈儿</div>
         <div class="year">年份季节: 2018秋季新款</div>
       </div>
-    </div>
-    <div class="good-item">
+    </navigator>
+    <navigator class="good-item">
       <image class="img" src="../static/images/banner/201803221353348299896.jpg" />
       <div class="good-desc">
         <div class="brand">品牌: 香奈儿</div>
         <div class="year">年份季节: 2018秋季新款</div>
       </div>
-    </div>
+    </navigator>
     <!--推荐-->
     <div class="recommend">
       <i class="icon iconfont icon-huo"></i>推荐商品
@@ -74,7 +74,9 @@
     <div class="recommend-goods-wrap">
       <div class="recommend-goods-content">
         <div class="recommend-goods-item" v-for="(good, index) in goodList" :key="index">
-          <image :src="good.url" />
+          <navigator>
+            <image :src="good.url" />
+          </navigator>
           <div class="recommend-good-desc">
             <div class="good-name">{{ good.name }}</div>
             <div class="good-info">
