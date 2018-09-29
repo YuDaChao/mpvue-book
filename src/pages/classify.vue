@@ -108,7 +108,9 @@
   .search-content {
     display: flex;
     align-items: center;
-    padding: 10px 30px;
+    padding: 0 30px;
+    height: 48px;
+    line-height: 48px;
     border-bottom: 1px solid #f5f5f5;
     border-top: 1px solid #f5f5f5;
   }
@@ -123,21 +125,22 @@
 
   .search-input {
     flex: 1;
-    height: 30px;
+    height: 33px;
     background-color: #f1f1f1;
-    border-radius: 30px;
+    border-radius: 33px;
     color: #999;
     padding-left: 30px;
-    line-height: 30px;
+    line-height: 33px;
     text-align: center;
   }
   .category {
     display: flex;
-    padding-top: 52px;
+    padding-top: 49px;
     background-color: #f1f1f1;
   }
   .left-nav {
     flex: 0 0 80px;
+    margin-top: 1px;
     background-color: #f1f1f1;
   }
   .left-nav .item {
@@ -166,6 +169,7 @@
     padding: 10px 10px 0;
     background-color: #fff;
     box-sizing: border-box;
+    overflow: hidden;
   }
   .right-header-wrap {
     width: 100%;

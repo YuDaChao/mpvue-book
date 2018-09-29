@@ -24,19 +24,19 @@
     </div>
     <!--导航-->
     <div class="nav-list">
-      <navigator class="nav-item">
+      <navigator url="" class="nav-item">
         <image src="../static/images/icon_nav_01_new.png" class="nav_icon"/>
         <div class="nav-text">签到有礼</div>
       </navigator>
-      <navigator class="nav-item">
+      <navigator url="" class="nav-item">
         <image src="../static/images/icon_nav_02_new.png" class="nav_icon"/>
         <div class="nav-text">换货专区</div>
       </navigator>
-      <navigator class="nav-item">
+      <navigator url="" class="nav-item">
         <image src="../static/images/icon_nav_03_new.png" class="nav_icon"/>
         <div class="nav-text">特价专区</div>
       </navigator>
-      <navigator class="nav-item">
+      <navigator url="" class="nav-item">
         <image src="../static/images/icon_nav_04_new.png" class="nav_icon"/>
         <div class="nav-text">我要补货</div>
       </navigator>
@@ -45,21 +45,21 @@
       <div class="title">优惠活动</div>
     </div>
     <!--优惠活动-->
-    <navigator class="good-item">
+    <navigator url="/pages/good_detail" class="good-item">
       <image class="img" src="../static/images/banner/201803191442069389248.jpg" />
       <div class="good-desc">
         <div class="brand">品牌: 香奈儿</div>
         <div class="year">年份季节: 2018秋季新款</div>
       </div>
     </navigator>
-    <navigator class="good-item">
+    <navigator url="/pages/good_detail" class="good-item">
       <image class="img" src="../static/images/banner/201803221356007729116.jpg" />
       <div class="good-desc">
         <div class="brand">品牌: 香奈儿</div>
         <div class="year">年份季节: 2018秋季新款</div>
       </div>
     </navigator>
-    <navigator class="good-item">
+    <navigator url="/pages/good_detail" class="good-item">
       <image class="img" src="../static/images/banner/201803221353348299896.jpg" />
       <div class="good-desc">
         <div class="brand">品牌: 香奈儿</div>
@@ -74,7 +74,7 @@
     <div class="recommend-goods-wrap">
       <div class="recommend-goods-content">
         <div class="recommend-goods-item" v-for="(good, index) in goodList" :key="index">
-          <navigator>
+          <navigator url="/pages/good_detail">
             <image :src="good.url" />
           </navigator>
           <div class="recommend-good-desc">
@@ -172,7 +172,7 @@
   .search-content {
     display: flex;
     align-items: center;
-    padding: 0 30px;
+    padding: 5px 30px;
   }
 
   .icon-sousuo {
@@ -185,13 +185,13 @@
 
   .search-input {
     flex: 1;
-    height: 25px;
+    height: 30px;
     border: 1px solid #efefee;
     background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 25px;
+    border-radius: 30px;
     color: #fff;
     padding-left: 30px;
-    line-height: 25px;
+    line-height: 30px;
   }
 
   .message {
@@ -214,12 +214,12 @@
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    padding: 10px 0;
   }
 
   .nav-item {
     flex: 1;
     text-align: center;
+    padding: 10px 0;
   }
 
   .nav_icon {

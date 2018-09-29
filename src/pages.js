@@ -13,11 +13,16 @@ module.exports = [
     path: 'pages/shop_cart',
     config: {
       navigationBarTitleText: '购物车'
-    },
+    }
   }, {
     path: 'pages/info',
     config: {
       navigationBarTitleText: '我的'
-    },
+    }
+  }, {
+    path: 'pages/good_detail',
+    config: {
+      navigationBarTitleText: '商品详情'
+    }
   }
 ]
