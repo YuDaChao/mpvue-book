@@ -15,6 +15,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-check:before { content: "\e605"; }
+
 .icon-home:before { content: "\e61e"; }
 
 .icon-gouwuche:before { content: "\e63f"; }
@@ -68,4 +70,3 @@
 .icon-jushoucanggift:before { content: "\e684"; }
 
 .icon-liwu:before { content: "\e685"; }
-
