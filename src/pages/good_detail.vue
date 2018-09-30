@@ -142,6 +142,12 @@
             <i class="icon iconfont icon-wodefankui"></i>
             <span>客服</span>
           </div>
+          <div class="home cart">
+            <i class="icon iconfont icon-gouwuche">
+              <span class="cart-num">1</span>
+            </i>
+            <span>购物车</span>
+          </div>
           <div class="add-cart">加入购物车</div>
           <div class="buy">立即购买</div>
         </div>
@@ -340,6 +346,22 @@
   }
   .home span {
     color: #666;
+  }
+  .home.cart .icon-gouwuche{
+    position: relative;
+  }
+  .home.cart .cart-num{
+    position: absolute;
+    right: 13px;
+    display: inline-block;
+    font-size: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 10px;
+    background-color: #f10215;
+    color: #fff;
   }
   .add-cart, .buy {
     flex: 2;
