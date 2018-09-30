@@ -3,6 +3,7 @@ import App from '@/App'
 import store from '@/store'
 
 import '../static/styles/reset.css'
+import '../static/styles/base.css'
 import '../static/styles/iconfont.css'
 
 Vue.config.productionTip = false
