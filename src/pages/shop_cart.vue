@@ -32,7 +32,7 @@
           </div>
         </div>
       </div>
-      <div class="cart-fixed">
+      <div class="cart-fixed"  v-show="carts.length > 0">
         <div class="cart-fixed-content">
           <div class="check-all" @click="handleCheckAll">
             <i class="icon iconfont icon-check uncheck" :class="isCheckAll ? 'check' : 'uncheck'"></i>
