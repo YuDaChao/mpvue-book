@@ -72,7 +72,10 @@
     </div>
     <!--推荐商品列表-->
     <div class="recommend-goods-wrap">
-      <good-item :good-list="goodList" @handleAddCart="handleAddCart" />
+      <good-item
+        :good-list="goodList"
+        @handleAddCart="handleAddCart"
+        @handleGoodDetail="handleGoodDetail" />
     </div>
     <div class="load-more-wrap"><load-more :show="showLoadMore" /></div>
   </div>
@@ -137,6 +140,12 @@
           title: '添加成功',
           icon: 'success',
           duration: 1000
+        })
+      },
+      handleGoodDetail (good) {
+        this.$store.commit('SET_GOOD_DETAIL', { good })
+        wx.navigateTo({
+          url: '/pages/good_detail'
         })
       }
     },

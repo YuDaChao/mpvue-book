@@ -59,5 +59,8 @@ export default {
         _good.count--
       }
     }
+  },
+  [types.SET_GOOD_DETAIL] (state, { good }) {
+    state.goodDetail = good
   }
 }

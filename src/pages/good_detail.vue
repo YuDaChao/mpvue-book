@@ -14,11 +14,11 @@
       </div>
       <div class="good-detail-info">
         <div class="good-info-content">
-          <div class="good-name">新款韩版印花字母短款T恤衫 T18C076</div>
+          <div class="good-name">{{ goodDetail.name }}</div>
           <div class="good-info-footer">
             <div class="good-price">
               <em>¥</em>
-              <span>359</span>
+              <span>{{ goodDetail.price }}</span>
             </div>
             <div class="follow">
               <i class="icon iconfont icon-jushoucang"></i>
@@ -142,13 +142,13 @@
             <i class="icon iconfont icon-wodefankui"></i>
             <span>客服</span>
           </div>
-          <div class="home cart">
+          <div class="home cart" @click="gotoCart">
             <i class="icon iconfont icon-gouwuche">
-              <span class="cart-num">1</span>
+              <span class="cart-num" v-if="cartLen > 0">{{ cartLen }}</span>
             </i>
             <span>购物车</span>
           </div>
-          <div class="add-cart">加入购物车</div>
+          <div class="add-cart" @click="handleAddCart">加入购物车</div>
           <div class="buy">立即购买</div>
         </div>
       </div>
@@ -156,6 +156,7 @@
 </template>
 
 <script>
+  import { mapGetters, mapState, mapActions } from 'vuex'
   export default {
     name: "good_detail",
     data () {
@@ -171,6 +172,23 @@
         indicatorActiveColor: "#fff",
         autoplay: true,
         circular: true
+      }
+    },
+    mounted () {
+    },
+    computed: {
+      ...mapGetters(['cartLen']),
+      ...mapState(['goodDetail'])
+    },
+    methods: {
+      ...mapActions(['addCart']),
+      gotoCart () {
+        wx.switchTab({
+          url: '/pages/shop_cart'
+        })
+      },
+      handleAddCart () {
+        this.addCart(this.goodDetail)
       }
     }
   };

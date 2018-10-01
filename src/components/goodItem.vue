@@ -1,11 +1,11 @@
 <template>
   <div class="recommend-goods-content">
     <div class="recommend-goods-item" v-for="(good, index) in goodList" :key="index">
-      <navigator url="/pages/good_detail">
+      <div @click="handleGoodDetail(good)">
         <image :src="good.url"/>
-      </navigator>
+      </div>
       <div class="recommend-good-desc">
-        <div class="good-name">{{ good.name }}</div>
+        <div class="good-name" @click="handleGoodDetail(good)">{{ good.name }}</div>
         <div class="good-info">
           <span class="new-price"><em>￥</em>{{ good.price }}</span>
           <!--<span class="old-price"><em>￥</em>195</span>-->
@@ -29,6 +29,9 @@
     methods: {
       handleAddCart (good) {
         this.$emit('handleAddCart', good)
+      },
+      handleGoodDetail (good) {
+        this.$emit('handleGoodDetail', good)
       }
     }
   };
