@@ -10,7 +10,7 @@
           <span class="new-price"><em>￥</em>{{ good.price }}</span>
           <!--<span class="old-price"><em>￥</em>195</span>-->
           <span class="sale-num">销量{{ good.sale_num }}件</span>
-          <i class="icon iconfont icon-gouwuchetianjia"></i>
+          <i class="icon iconfont icon-gouwuchetianjia" @click="handleAddCart(good)"></i>
         </div>
       </div>
     </div>
@@ -24,6 +24,11 @@
       goodList: {
         type: Array,
         default: []
+      }
+    },
+    methods: {
+      handleAddCart (good) {
+        this.$emit('handleAddCart', good)
       }
     }
   };
@@ -84,5 +89,6 @@
   .icon-gouwuchetianjia {
     color: #f10215;
     display: inline-block;
+    padding: 0 8px;
   }
 </style>

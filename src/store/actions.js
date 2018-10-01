@@ -28,5 +28,9 @@ export default {
     }
     commit(types.SET_ISLOADING, false)
     wx.hideLoading()
+  },
+
+  addCart ({ commit, state }, good) {
+    commit(types.SET_ADD_CART, { good })
   }
 }

@@ -15,7 +15,7 @@
       },
       message: {
         type: String,
-        default: '加载中'
+        default: '上拉加载更多'
       }
     }
   };
@@ -32,8 +32,8 @@
     height: 18px;
   }
   .msg {
-    font-size: 15px;
+    font-size: 12px;
     color: #999;
-    margin-left: 5px;
+    margin-left: 8px;
   }
 </style>

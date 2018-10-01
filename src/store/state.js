@@ -1,5 +1,6 @@
 export default {
   categoryGoods: [],
   categoryGoodsBackup: [],
-  isLoading: true
+  isLoading: true,
+  carts: []
 }

@@ -1,53 +1,29 @@
 <template>
     <div class="shop-cart-wrap">
       <div class="shop-cart-list">
-        <div class="shop-cart-item">
-          <i class="icon iconfont icon-check"></i>
+        <div class="shop-cart-item" v-for="(good, index) in carts" :key="good.id">
+          <i
+            class="icon iconfont icon-check"
+            :class="good.checked ? 'check' : 'uncheck'"
+            @click="handleCheckGood(good)"></i>
           <div class="cart-good-info">
-            <image class="cart-img" src="../static/images/goods/1.jpg" />
+            <image class="cart-img" :src="good.url" />
             <div class="cart-good-desc">
-              <div class="good-name">璞衣2018秋装新款 女 棉麻风格 休闲女装民族风印花长袖连衣裙1802 蓝色 MH0440</div>
+              <div class="good-name">{{ good.name }}</div>
               <div class="good-size">
                 <span>藏青花纹49, 175/92A/L</span>
               </div>
               <div class="good-price">
                 <span class="price">
                   <em>¥</em>
-                  <span>178.00</span>
+                  <span>{{ good.price }}</span>
                 </span>
                 <span class="number-ope">
-                  <span class="decrement">
-                     <i class="icon iconfont icon-jian"></i>
+                  <span class="decrement" @click="handleDecrementCount(good, false)">
+                     <i class="icon iconfont icon-jian" :class="{'count-one': good.count === 1 ? true : false}"></i>
                   </span>
-                  <span class="count">1</span>
-                  <span class="increment">
-                     <i class="icon iconfont icon-tianjia"></i>
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="shop-cart-item">
-          <i class="icon iconfont icon-check"></i>
-          <div class="cart-good-info">
-            <image class="cart-img" src="../static/images/goods/1.jpg" />
-            <div class="cart-good-desc">
-              <div class="good-name">璞衣2018秋装新款 女 棉麻风格 休闲女装民族风印花长袖连衣裙1802 蓝色 M</div>
-              <div class="good-size">
-                <span>藏青花纹49, 175/92A/L</span>
-              </div>
-              <div class="good-price">
-                <span class="price">
-                  <em>¥</em>
-                  <span>178.00</span>
-                </span>
-                <span class="number-ope">
-                  <span class="decrement">
-                     <i class="icon iconfont icon-jian"></i>
-                  </span>
-                  <span class="count">1</span>
-                  <span class="increment">
+                  <span class="count">{{ good.count }}</span>
+                  <span class="increment" @click="handleIncrementCount(good, true)">
                      <i class="icon iconfont icon-tianjia"></i>
                   </span>
                 </span>
@@ -58,8 +34,8 @@
       </div>
       <div class="cart-fixed">
         <div class="cart-fixed-content">
-          <div class="check-all">
-            <i class="icon iconfont icon-check"></i>
+          <div class="check-all" @click="handleCheckAll">
+            <i class="icon iconfont icon-check uncheck" :class="isCheckAll ? 'check' : 'uncheck'"></i>
             <span>全选</span>
           </div>
           <div class="cart-body">
@@ -67,15 +43,18 @@
               <div class="total">
                 <span class="total-txt">总计:</span>
                 <span class="total-price">
-                  <em>¥</em>0.00
+                  <em>¥</em>{{ totalMoney }}
                 </span>
               </div>
-              <div class="jiesuan">去结算</div>
+              <div class="jiesuan" :class="{'jiesuan-disabled': disabledSettleBtn}">
+                去结算
+                <span class="cart-total-count">({{ settleCount }}件)</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="shop-cart" style="display: none">
+      <div class="shop-cart" v-show="carts.length === 0">
         <image class="empty-cart-img" src="../static/images/empty_cart.png" />
         <div class="empty-cart-tip">购物车空空如也，去逛逛吧～</div>
       </div>
@@ -83,8 +62,43 @@
 </template>
 
 <script>
+  import { mapState, mapGetters, mapMutations } from 'vuex'
+
   export default {
-    name: "shop_cart"
+    name: "shop_cart",
+    computed: {
+      ...mapState(['carts']),
+      ...mapGetters([
+        'isCheckAll',
+        'disabledSettleBtn',
+        'settleCount',
+        'totalMoney']),
+      ...mapMutations({
+        checkGood: 'SET_CHECK_GOOD'
+      })
+    },
+    methods: {
+      handleCheckGood (good) {
+        // this.checkGood(good)
+        this.$store.commit('SET_CHECK_GOOD', { good })
+      },
+      // 全选 / 取消全选
+      handleCheckAll () {
+        this.$store.commit('SET_CHECK_ALL', this.isCheckAll)
+      },
+      // 修改商品数量
+      handleCartCount (good, isAddCount) {
+        this.$store.commit('SET_GOOD_COUNT', { good, isAddCount })
+      },
+      // 减数
+      handleDecrementCount (good, isAddCount) {
+        good.count > 1 && this.handleCartCount(good, isAddCount)
+      },
+      // 加数
+      handleIncrementCount (good, isAddCount) {
+        this.handleCartCount(good, isAddCount)
+      }
+    }
   };
 </script>
 
@@ -104,6 +118,22 @@
     font-size: 25px;
     color: #999999;
     margin-top: -30px;
+  }
+
+  .shop-cart-item .icon-check.uncheck {
+    color: #e5e5e5;
+  }
+
+  .shop-cart-item .icon-check.check {
+    color: #f10215;
+  }
+
+  .check-all .icon-check.uncheck {
+    color: #e5e5e5;
+  }
+
+  .check-all .icon-check.check {
+    color: #f10215;
   }
 
   .shop-cart-item .cart-good-info {
@@ -172,6 +202,10 @@
     font-size: 14px;
   }
 
+  .icon-jian.count-one {
+    color: #e5e5e5;
+  }
+
   .number-ope .decrement {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -213,7 +247,7 @@
     bottom: 0;
     width: 100%;
     height: 46px;
-    background-color: #f7f7f7;
+    background-color: #fff;
     border-top: 1px solid #f5f5f5;
   }
 
@@ -263,6 +297,15 @@
     background-color: #f10215;
     font-size: 16px;
     color: #fff;
+  }
+
+  .jiesuan .cart-total-count {
+    font-size: 10px;
+  }
+
+  .jiesuan-disabled {
+    background-color: #7f7f7f;
+    color: #e5e5e5;
   }
 
 </style>

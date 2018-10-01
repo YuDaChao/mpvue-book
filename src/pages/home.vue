@@ -72,13 +72,14 @@
     </div>
     <!--推荐商品列表-->
     <div class="recommend-goods-wrap">
-      <good-item :good-list="goodList" />
+      <good-item :good-list="goodList" @handleAddCart="handleAddCart" />
     </div>
     <div class="load-more-wrap"><load-more :show="showLoadMore" /></div>
   </div>
 </template>
 
 <script>
+  import { mapActions, mapState } from 'vuex'
   import api from '../api'
   import GoodItem from '../components/goodItem'
   import LoadMore from '../components/loadMore'
@@ -113,13 +114,30 @@
     mounted () {
       this.getGoodList()
     },
+    computed: {
+      ...mapState(['carts'])
+    },
+    watch: {
+      carts (val) {
+        console.log(val)
+      }
+    },
     methods: {
+      ...mapActions(['addCart']),
       async getGoodList () {
         const result = await api.getGoodList()
         if (result.code === 0) {
           this.goods = result.data
           this.goodList = result.data.slice(0, 5)
         }
+      },
+      handleAddCart (good) {
+        this.addCart(good)
+        wx.showToast({
+          title: '添加成功',
+          icon: 'success',
+          duration: 1000
+        })
       }
     },
     // 监听页面滚动
